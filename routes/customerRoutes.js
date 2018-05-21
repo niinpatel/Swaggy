@@ -15,6 +15,7 @@ router.post('/register',function(req,res){
     customer.customerId = req.body.customerId;
 
     customer.firstName = req.body.firstName;
+
     if(!customer.firstName.match(nameRegex)){
         if(customer.firstName.length > 25) throw 'first name can\'t be more than 25 characters';
         else throw 'First name invalid, no special characters allowed';
@@ -26,10 +27,20 @@ router.post('/register',function(req,res){
         else throw 'Last name invalid, no special characters allowed';
     }
 
-    customer.email = req.body.email;
-    if(!customer.email.match(emailRegex)) throw 'Invalid email';
+    customer.customerEmail = req.body.customerEmail;
+
+    Customer.find({customerEmail: customer.customerEmail}, (err, customer) => {
+        if(!err && customer.length){
+            throw 'Email already registered';
+        }
+    });
 
     customer.phoneNumber = req.body.phoneNumber;
+    Customer.find({phoneNumber: customer.phoneNumber}, (err, customer) => {
+        if(!err && customer.length){
+            throw 'Phone Number already registered';
+        }
+    });
     if(!customer.phoneNumber.match(phoneNumberRegex)) throw 'Invalid phone number, enter 10 digits, no spaces';
 
     customer.password = req.body.password;

@@ -10,7 +10,6 @@ var customerSchema = new Schema({
     customerEmail : {
         type: String,
         require: 'Email Address is required',
-        match :/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     },
     firstName: {
         type: String,
@@ -25,6 +24,7 @@ var customerSchema = new Schema({
     phoneNumber: {
         type: String,
         required: true,
+        index: { unique: true },
         match : /^[0-9]{10}$/
     },
     password: {
