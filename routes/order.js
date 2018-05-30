@@ -3,6 +3,10 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Order = require('../models/order');
 
+var multer = require('multer');
+var upload = multer({dest: './uploads'}); //  Defines where I want to save my uploaded files. When an image is received by the route, it will be automatically saved by multer to this directory.
+
+
 var app = express();
 
 // @route   GET /order/orders
@@ -21,7 +25,7 @@ router.get('/orders', (req, res) => {
 // route for a specific order
 router.get('/orders/:id', (req, res) => {
     Order.findById(req.params.id)
-    .then(post => res.json(post))
+    .then(order => res.json(order))
     .catch(err =>
       res.status(404).json({ nopostfound: 'No post found with that ID' })
     );
@@ -68,5 +72,30 @@ router.put('/:id', function (req, res) {
         })
     })
 })
+
+router.delete('/orders/:id', function(req, res) {
+    Order.remove({driverId: req.params.id}, function(err) {
+        if(err) {
+            throw err;
+        }
+        res.json({"Status" : "Successfully Deleted"});
+    });
+});
+
+//For multer It's very crucial that the file name in upload.single() matches the name attribute in my index.html. When an image is received by the route, it will be automatically saved by multer to the directory you previously specified. The upload.single call is handled by the multer middleware.
+router.post('/upload', upload.single('image'), function(req, res) {
+    if (!req.file) {
+        console.log('No files received');
+        return res.send({
+            success: false
+        })
+    } else {
+        console.log('File received');
+        console.log('file info: ',req.file.image);
+        return res.send({
+            success: true
+        })
+    }
+});
 
 module.exports = router;
