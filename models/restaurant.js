@@ -21,7 +21,7 @@ var restaurantSchema = new Schema({
             id: {type: String, required : true},
             AreaName : {type: String, required : true}
         }],
-        ratings : [Number],
+        ratings : [{type : Number}],
         restaurantTimings : [{
             day : {type : String, required: true},
             timings: {type : String, required: true}
@@ -34,8 +34,8 @@ var restaurantSchema = new Schema({
               menuItemId : {type: String, require : true},
               menuItemName : {type : String},
               menuItemDesc : {type : String},
-              menuItemImages : [String],
-              tags : [String]
+              menuItemImages : [{type : String}],
+              tags : [{type : String}]
           }]
         }]
     }
