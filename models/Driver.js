@@ -1,27 +1,27 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var customerSchema = new Schema({
-    customerId: {
+var driverSchema = new Schema({
+    driverId: {
         type: String,
         required: true,
         index: { unique: true }
-        },
-    customerEmail : {
+    },
+    driverEmail : {
         type: String,
         require: 'Email Address is required',
     },
-    firstName: {
+    driverFirstName: {
         type: String,
         required: true,
         match : /^[a-z ,.'-]{1,25}$/i
     },
-    lastName: {
+    driverLastName: {
         type: String,
         required: true,
         match : /^[a-z ,.'-]{1,25}$/i
     },
-    phoneNumber: {
+    driverPhoneNumber: {
         type: String,
         required: true,
         index: { unique: true },
@@ -35,15 +35,16 @@ var customerSchema = new Schema({
         type: String,
         required: true
     },
-    address: {
+    driverAddress: {
         type: String,
         required: true,
         match : /^[a-z 0-9,.'-]{20,300}$/i
     },
-    paymentMethods : [{
-        id : {type : String, required:true},
-        type:{type: String, required: true}
+    preferedDeliveryArea :  [{
+        id: {type: String, required : true},
+        AreaName : {type: String, required : true}
     }],
+    isOnline : {type : Boolean}
 });
 
-module.exports = mongoose.model('Customer',customerSchema);
+module.exports = mongoose.model('driver',driverSchema);
