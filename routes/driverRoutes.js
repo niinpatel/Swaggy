@@ -1,56 +1,56 @@
 var express = require('express');
 var router = express.Router();
-var Customer = require('../models/customer');
+var driver = require('../models/driver');
 var Restaurant = require('../models/restaurant');
 
 
 router.post('/register',function(req,res){
-    var customer = new Customer();
+    var driver = new driver();
 
     let nameRegex = /^[a-z ,.'-]{1,25}$/i;
     let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let phoneNumberRegex = /^[0-9]{10}$/;
     let addressRegex = /^[a-z 0-9,.'-]{20,300}$/i;
 
-    customer.customerId = req.body.customerId;
+    driver.driverId = req.body.driverId;
 
-    customer.firstName = req.body.firstName;
+    driver.driverFirstName = req.body.driverFirstName;
 
-    if(!customer.firstName.match(nameRegex)){
-        if(customer.firstName.length > 25) throw 'first name can\'t be more than 25 characters';
+    if(!driver.driverFirstName.match(nameRegex)){
+        if(driver.driverFirstName.length > 25) throw 'first name can\'t be more than 25 characters';
         else throw 'First name invalid, no special characters allowed';
     }
 
-    customer.lastName = req.body.lastName;
-    if(!customer.lastName.match(nameRegex)){
-        if(customer.lastName.length > 25) throw 'first name can\'t be more than 25 characters';
+    driver.driverLastName = req.body.driverLastName;
+    if(!driver.driverLastName.match(nameRegex)){
+        if(driver.driverLastName.length > 25) throw 'first name can\'t be more than 25 characters';
         else throw 'Last name invalid, no special characters allowed';
     }
 
-    customer.customerEmail = req.body.customerEmail;
+    driver.customerEmail = req.body.customerEmail;
 
-    Customer.find({customerEmail: customer.customerEmail}, (err, customer) => {
-        if(!err && customer.length){
+    driver.find({customerEmail: driver.customerEmail}, (err, driver) => {
+        if(!err && driver.length){
             throw 'Email already registered';
         }
     });
 
-    customer.phoneNumber = req.body.phoneNumber;
-    Customer.find({phoneNumber: customer.phoneNumber}, (err, customer) => {
-        if(!err && customer.length){
+    driver.phoneNumber = req.body.phoneNumber;
+    driver.find({phoneNumber: driver.phoneNumber}, (err, driver) => {
+        if(!err && driver.length){
             throw 'Phone Number already registered';
         }
     });
-    if(!customer.phoneNumber.match(phoneNumberRegex)) throw 'Invalid phone number, enter 10 digits, no spaces';
+    if(!driver.phoneNumber.match(phoneNumberRegex)) throw 'Invalid phone number, enter 10 digits, no spaces';
 
-    customer.password = req.body.password;
-    customer.confirmPassword = req.body.confirmPassword;
-    customer.address = req.body.address;
-    if(!customer.address.match(addressRegex)) throw 'Invalid Address';
+    driver.password = req.body.password;
+    driver.confirmPassword = req.body.confirmPassword;
+    driver.address = req.body.address;
+    if(!driver.address.match(addressRegex)) throw 'Invalid Address';
 
-    customer.save(function(err){
+    driver.save(function(err){
         if(err) throw err;
-        res.json({"Status" : "Customer Saved"});
+        res.json({"Status" : "driver Saved"});
     });
 
 });
@@ -69,10 +69,10 @@ router.get('/home', function(req, res) {
     })
 });
 
-//View Customer for viewing all restaurants
+//View driver for viewing all restaurants
 
-router.get('/viewCustomer', function(req, res) {
-    Customer.find({}, function (err, customers) {
+router.get('/viewDrivers', function(req, res) {
+    driver.find({}, function (err, customers) {
         if (err) {
             console.log(err)
         } else {

@@ -33,6 +33,7 @@ var restaurantSchema = new Schema({
           menuItems : [{
               menuItemId : {type: String, require : true},
               menuItemName : {type : String},
+              menuPrice : {type : String},
               menuItemDesc : {type : String},
               menuItemImages : [{type : String}],
               tags : [{type : String}]
