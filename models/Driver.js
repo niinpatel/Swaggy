@@ -41,10 +41,10 @@ var driverSchema = new Schema({
         match : /^[a-z 0-9,.'-]{20,300}$/i
     },
     preferedDeliveryArea :  [{
-        id: {type: String, required : true},
-        AreaName : {type: String, required : true}
+        id: {type: String},
+        AreaName : {type: String}
     }],
-    isOnline : {type : Boolean}
+    isOnline : {type : Boolean, default : false}
 });
 
 module.exports = mongoose.model('driver',driverSchema);
