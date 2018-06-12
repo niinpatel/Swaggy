@@ -1,0 +1,81 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.user{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(-100px/2);
+    left: calc(50% - 50px);
+}
+.logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 380px;
+    padding: 65px 50px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 40px;
+}
+.logo p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #fff;
+}
+.logo input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.logo input[type="text"],
+.logo input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    height: 30px;
+    color: #fff;
+}
+font-face { font-family: myFont; src: url('Halo.ttf'); }
+.logo input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    color: red;
+    font-size: 20px;
+    background-color: darkorange;
+    border-radius: 10px;
+    font-family: myFont,Verdana;
+}
+.logo input[type="submit"]:hover{
+    background: orange;
+    font-family: myFont,Verdana;
+}
+.logo a{
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+}
+a{
+    color:blue;
+}
+#container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+}

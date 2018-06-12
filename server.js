@@ -7,12 +7,12 @@ var app = express();
 var PORT = 3132;
 
 //Middleware
-
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
 var customerRoutes = require('./routes/customerRoutes');
 app.use("/customer", customerRoutes);
 
-app.use(bodyParser.urlencoded({extended:true}));
+
 
 
 

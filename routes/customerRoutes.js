@@ -3,6 +3,8 @@ var router = express.Router();
 var Customer = require('../models/customer');
 var Restaurant = require('../models/restaurant');
 
+var key  = "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";
+
 
 router.post('/register',function(req,res){
     var customer = new Customer();
@@ -69,6 +71,24 @@ router.get('/home', function(req, res) {
     })
 });
 
+router.post('/mail/:name', function(req, res) {
+    console.log(req.params.name);
+    let name = req.params.name;
+    const sgMail = require('@sendgrid/mail');
+    console.log(key);
+    sgMail.setApiKey(key);
+    const msg = {
+        to: 'akshayheg@gmail.com',
+        from: 'swaggy@swaggy.com',
+        subject: 'This is the first test mail',
+        text: 'Email Text',
+        html: '<strong>Executed! Hello' + name + '</strong> ',
+    };
+    sgMail.send(msg);
+    res.end();
+});
+
+
 //View Customer for viewing all restaurants
 
 router.get('/viewCustomer', function(req, res) {
@@ -83,6 +103,36 @@ router.get('/viewCustomer', function(req, res) {
     })
 });
 
+//Login Customer
+
+router.post('/customerLogin',function(req,res){
+    console.log(req.body);
+    console.log(req.body.customerEmail);
+    console.log(req.body.password);
+
+    Customer.findOne({customerEmail : req.body.customerEmail}, function (err, customers) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(customers);
+
+            if(customers.password == req.body.password){
+                res.redirect('/customer/home');
+            }else{
+                res.send('Password did not match');
+            }
+            res.end();
+        }
+    })
+});
+
+
+
+
+
+
+
+
 //On selecting restaurant :restaurantId is used to find the required restaurant
 
 router.get('/restaurantDetails/:restaurantId', function(req, res) {
@@ -96,6 +146,7 @@ router.get('/restaurantDetails/:restaurantId', function(req, res) {
     })
 
 });
+
 
 /*// TEST FOR DATA RESTAURANT DATA
 
