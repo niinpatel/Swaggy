@@ -9,8 +9,8 @@ let restaurantAddressSchema = new Schema ({
         index: { unique: true }
     },
     Restaurant_Restaurant_Id: {
-        type: String,
-        required: true
+        type:Schema.Types.ObjectId,
+        ref:'Restaurants'
     },
     Address_Locality: {
         type: String
