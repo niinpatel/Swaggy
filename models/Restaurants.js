@@ -6,12 +6,9 @@ let restaurantsSchema = new Schema ({
     Restaurant_Id: {
         type:Schema.Types.ObjectId,
         ref:'Restaurant_Address',
+        ref:'Menu_Items',
         required: true,
         index: { unique: true }
-    },
-    Restaurant_Restaurant_Id: {
-        type:Schema.Types.ObjectId,
-        ref:'Restaurants'
     },
     Restaurant_Name: {
         type: String,
