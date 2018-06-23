@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt-nodejs");
 const Schema = mongoose.Schema;
 
 const customerSchema = new Schema({
@@ -44,4 +45,26 @@ const customerSchema = new Schema({
   }
 });
 
+customerSchema.pre("save",function(next){
+  const customer = this;
+  if(!customer.isModified("Customer_Password"))
+    return next();
+  if(customer.Customer_Password){
+    bcrypt.genSalt(10,(err,salt)=>{
+        if(err)
+          next(err);
+        bcrypt.hash(customer.Customer_Password, salt,null,(err,hash)=>{
+          if(err)
+            next(err);
+          customer.Customer_Password = hash;
+          next(err);
+        });
+    });
+  }
+  
+});
+
+customerSchema.methods.comparePassword = (password)=>{
+  return bcrypt.compareSync(password,this.password);
+}
 module.exports = mongoose.model("Customer", customerSchema,'Customer_Collection');
