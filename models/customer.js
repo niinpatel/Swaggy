@@ -34,7 +34,7 @@ const customerSchema = new Schema({
   },
   Customer_Address: {
     type: Schema.Types.ObjectId,
-    ref: 'Customer_Address'
+    ref: "Customer_Address"
   },
   Customer_Token: {
     type: String
@@ -45,26 +45,26 @@ const customerSchema = new Schema({
   }
 });
 
-customerSchema.pre("save",function(next){
+customerSchema.pre("save", function(next) {
   const customer = this;
-  if(!customer.isModified("Customer_Password"))
-    return next();
-  if(customer.Customer_Password){
-    bcrypt.genSalt(10,(err,salt)=>{
-        if(err)
-          next(err);
-        bcrypt.hash(customer.Customer_Password, salt,null,(err,hash)=>{
-          if(err)
-            next(err);
-          customer.Customer_Password = hash;
-          next(err);
-        });
+  if (!customer.isModified("Customer_Password")) return next();
+  if (customer.Customer_Password) {
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) next(err);
+      bcrypt.hash(customer.Customer_Password, salt, null, (err, hash) => {
+        if (err) next(err);
+        customer.Customer_Password = hash;
+        next(err);
+      });
     });
   }
-  
 });
 
-customerSchema.methods.comparePassword = (password)=>{
-  return bcrypt.compareSync(password,this.password);
-}
-module.exports = mongoose.model("Customer", customerSchema,'Customer_Collection');
+customerSchema.methods.comparePassword = function(Customer_Password) {
+  return bcrypt.compareSync(Customer_Password, this.Customer_Password);
+};
+module.exports = mongoose.model(
+  "Customer",
+  customerSchema,
+  "Customer_Collection"
+);
