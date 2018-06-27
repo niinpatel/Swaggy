@@ -25,6 +25,7 @@ class Registration extends Component {
               type="text"
               placeholder="User name"
               name="Customer_Name"
+              value={this.state.Customer_Name}
             />
           </div>
           <div class="single-input">
@@ -33,6 +34,7 @@ class Registration extends Component {
               type="email"
               placeholder="Email address"
               name="Customer_Email"
+              value={this.state.Customer_Email}
             />
           </div>
           <div class="single-input">
@@ -41,6 +43,7 @@ class Registration extends Component {
               type="password"
               placeholder="Password"
               name="Customer_Password"
+              value={this.state.Customer_Password}
             />
           </div>
           <div class="single-input">
@@ -49,6 +52,7 @@ class Registration extends Component {
               type="password"
               placeholder="Confirm password"
               name="Customer_Password2"
+              value={this.state.Customer_Password2}
             />
           </div>
           <div class="single-input">
