@@ -10,23 +10,35 @@ class Registration extends Component {
       Customer_Password2: ""
     };
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onSubmit(e) {
+    e.preventDefault();
+    const newCustomer = {
+      Customer_Name: this.state.Customer_Name,
+      Customer_Email: this.state.Customer_Email,
+      Customer_Password: this.state.Customer_Password,
+      Customer_Password2: this.state.Customer_Password2
+    };
+    console.log(newCustomer);
+  }
+
   render() {
     return (
       <div
-        class="accountbox__register tab-pane fade"
+        className="accountbox__register tab-pane fade"
         id="profile"
         role="tabpanel"
         aria-labelledby="profile-tab"
       >
-        <form>
-          <div class="single-input">
+        <form onSubmit={this.onSubmit}>
+          <div className="single-input">
             <input
-              class="cr-round--lg"
+              className="cr-round--lg"
               type="text"
               placeholder="User name"
               name="Customer_Name"
@@ -34,9 +46,9 @@ class Registration extends Component {
               onChange={this.onChange}
             />
           </div>
-          <div class="single-input">
+          <div className="single-input">
             <input
-              class="cr-round--lg"
+              className="cr-round--lg"
               type="email"
               placeholder="Email address"
               name="Customer_Email"
@@ -44,9 +56,9 @@ class Registration extends Component {
               onChange={this.onChange}
             />
           </div>
-          <div class="single-input">
+          <div className="single-input">
             <input
-              class="cr-round--lg"
+              className="cr-round--lg"
               type="password"
               placeholder="Password"
               name="Customer_Password"
@@ -54,9 +66,9 @@ class Registration extends Component {
               onChange={this.onChange}
             />
           </div>
-          <div class="single-input">
+          <div className="single-input">
             <input
-              class="cr-round--lg"
+              className="cr-round--lg"
               type="password"
               placeholder="Confirm password"
               name="Customer_Password2"
@@ -64,8 +76,8 @@ class Registration extends Component {
               onChange={this.onChange}
             />
           </div>
-          <div class="single-input">
-            <button type="submit" class="food__btn">
+          <div className="single-input">
+            <button type="submit" className="food__btn">
               <span>Sign Up</span>
             </button>
           </div>

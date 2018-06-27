@@ -15,12 +15,12 @@ class App extends Component {
         <Slider />
         <MainSection />
         <Footer />
-        <div class="accountbox-wrapper">
-          <div class="accountbox text-left">
-            <ul class="nav accountbox__filters" id="myTab" role="tablist">
+        <div className="accountbox-wrapper">
+          <div className="accountbox text-left">
+            <ul className="nav accountbox__filters" id="myTab" role="tablist">
               <li>
                 <a
-                  class="active"
+                  className="active"
                   id="log-tab"
                   data-toggle="tab"
                   href="#log"
@@ -44,11 +44,11 @@ class App extends Component {
                 </a>
               </li>
             </ul>
-            <div class="accountbox__inner tab-content" id="myTabContent">
+            <div className="accountbox__inner tab-content" id="myTabContent">
               <Login />
               <Registration />
-              <span class="accountbox-close-button">
-                <i class="zmdi zmdi-close" />
+              <span className="accountbox-close-button">
+                <i className="zmdi zmdi-close" />
               </span>
             </div>
           </div>

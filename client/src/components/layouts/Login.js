@@ -4,48 +4,48 @@ class Login extends Component {
   render() {
     return (
       <div
-        class="accountbox__login tab-pane fade show active"
+        className="accountbox__login tab-pane fade show active"
         id="log"
         role="tabpanel"
         aria-labelledby="log-tab"
       >
         <form>
-          <div class="single-input">
+          <div className="single-input">
             <input
-              class="cr-round--lg"
+              className="cr-round--lg"
               type="text"
               placeholder="User name or email"
             />
           </div>
-          <div class="single-input">
+          <div className="single-input">
             <input
-              class="cr-round--lg"
+              className="cr-round--lg"
               type="password"
               placeholder="Password"
             />
           </div>
-          <div class="single-input">
-            <button type="submit" class="food__btn">
+          <div className="single-input">
+            <button type="submit" className="food__btn">
               <span>Go</span>
             </button>
           </div>
-          <div class="accountbox-login__others">
+          <div className="accountbox-login__others">
             <h6>Or login with</h6>
-            <div class="social-icons">
+            <div className="social-icons">
               <ul>
-                <li class="facebook">
+                <li className="facebook">
                   <a href="https://www.facebook.com/">
-                    <i class="fa fa-facebook" />
+                    <i className="fa fa-facebook" />
                   </a>
                 </li>
-                <li class="twitter">
+                <li className="twitter">
                   <a href="https://twitter.com/">
-                    <i class="fa fa-twitter" />
+                    <i className="fa fa-twitter" />
                   </a>
                 </li>
-                <li class="pinterest">
+                <li className="pinterest">
                   <a href="/">
-                    <i class="fa fa-google-plus" />
+                    <i className="fa fa-google-plus" />
                   </a>
                 </li>
               </ul>
