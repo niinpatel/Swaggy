@@ -9,7 +9,12 @@ class Registration extends Component {
       Customer_Password: "",
       Customer_Password2: ""
     };
+    this.onChange = this.onChange.bind(this);
   }
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     return (
       <div
@@ -26,6 +31,7 @@ class Registration extends Component {
               placeholder="User name"
               name="Customer_Name"
               value={this.state.Customer_Name}
+              onChange={this.onChange}
             />
           </div>
           <div class="single-input">
@@ -35,6 +41,7 @@ class Registration extends Component {
               placeholder="Email address"
               name="Customer_Email"
               value={this.state.Customer_Email}
+              onChange={this.onChange}
             />
           </div>
           <div class="single-input">
@@ -44,6 +51,7 @@ class Registration extends Component {
               placeholder="Password"
               name="Customer_Password"
               value={this.state.Customer_Password}
+              onChange={this.onChange}
             />
           </div>
           <div class="single-input">
@@ -53,6 +61,7 @@ class Registration extends Component {
               placeholder="Confirm password"
               name="Customer_Password2"
               value={this.state.Customer_Password2}
+              onChange={this.onChange}
             />
           </div>
           <div class="single-input">
