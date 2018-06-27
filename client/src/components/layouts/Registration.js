@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 class Registration extends Component {
   constructor() {
     super();
@@ -7,7 +7,8 @@ class Registration extends Component {
       Customer_Name: "",
       Customer_Email: "",
       Customer_Password: "",
-      Customer_Password2: ""
+      Customer_Password2: "",
+      Customer_Mobile: ""
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -22,9 +23,13 @@ class Registration extends Component {
       Customer_Name: this.state.Customer_Name,
       Customer_Email: this.state.Customer_Email,
       Customer_Password: this.state.Customer_Password,
-      Customer_Password2: this.state.Customer_Password2
+      Customer_Password2: this.state.Customer_Password2,
+      Customer_Mobile: this.state.Customer_Mobile
     };
-    console.log(newCustomer);
+    axios
+      .post("/customer/register", newCustomer)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -73,6 +78,16 @@ class Registration extends Component {
               placeholder="Confirm password"
               name="Customer_Password2"
               value={this.state.Customer_Password2}
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="single-input">
+            <input
+              className="cr-round--lg"
+              type="text"
+              placeholder="Phone Number"
+              name="Customer_Mobile"
+              value={this.state.Customer_Mobile}
               onChange={this.onChange}
             />
           </div>
