@@ -43,11 +43,19 @@ Router.route("/login")
   .get((req, res, next) => {
     res.sendFile(path.join(__dirname + "/../views/customerlogin.html"));
   })
-  .post(
-    passport.authenticate("local-login", {
-      successRedirect: "/customer/register",
-      failureRedirect: "/customer/login"
-    })
-  );
+  .post((req, res, next) => {
+    const Customer_Email = req.body.Customer_Email;
+    const Customer_Password = req.body.Customer_Password;
+
+    Customer.findOne({ Customer_Email }).then(user => {
+      if (!user) {
+        return res.status(400).json({ "Error Message": "Email ID not found " });
+      } else if (user.comparePassword(Customer_Password)) {
+        res.json({ "Success Message": "Login Successfull" });
+      } else {
+        return res.status(400).json({ "Error Message": "Password Incorrect" });
+      }
+    });
+  });
 
 module.exports = Router;
