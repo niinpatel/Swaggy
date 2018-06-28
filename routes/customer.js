@@ -3,8 +3,10 @@ const Router = express.Router();
 const path = require("path");
 const passport = require("passport");
 const gravatar = require("gravatar");
-const passportConfig = require("./CustomerPassport.js");
+const jwt = require("jsonwebtoken");
+
 const Customer = require("../models/customer");
+const keys = require("../config.json");
 
 Router.route("/register")
   .get((req, res, next) => {
@@ -51,11 +53,33 @@ Router.route("/login")
       if (!user) {
         return res.status(400).json({ "Error Message": "Email ID not found " });
       } else if (user.comparePassword(Customer_Password)) {
-        res.json({ "Success Message": "Login Successfull" });
+        const payload = {
+          id: user.id,
+          Customer_Name: user.Customer_Name,
+          Customer_Image: user.Customer_Image
+        };
+        jwt.sign(
+          payload,
+          keys.secret,
+          {
+            expiresIn: 3600
+          },
+          (err, token) => {
+            res.json({ Success: true, token: "Bearer " + token });
+          }
+        );
       } else {
         return res.status(400).json({ "Error Message": "Password Incorrect" });
       }
     });
   });
+
+Router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json(req.user);
+  }
+);
 
 module.exports = Router;

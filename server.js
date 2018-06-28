@@ -22,11 +22,8 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 
 app.use(passport.initialize());
-app.use(passport.session());
-app.use(function(req, res, next) {
-  res.locals.user = req.user;
-  next();
-});
+
+require("./routes/passport")(passport);
 
 const customerroutes = require("./routes/customer");
 
