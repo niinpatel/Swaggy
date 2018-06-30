@@ -8,15 +8,15 @@ const customerAddress_Schema = new Schema({
   },
   Address_Locality: {
     type: String,
-    required: [true, "Address is required"],
+    required: [true, "Address is required."],
   },
   Address_City: {
     type: String,
-    required: [true, "City is required"],
+    required: [true, "City is required."],
   },
   Address_Pincode: {
     type: String,
-    required: [true, "PINCODE is required"],
+    required: [true, "PINCODE is required."],
   }
 });
 
