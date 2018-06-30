@@ -12,7 +12,7 @@ mongoose.connect(
     if (err) {
       throw err;
     }
-    console.log("Node Server Connected to Mongo Database");
+    console.log("Node Server Connected to Mongo Database.");
   }
 );
 
