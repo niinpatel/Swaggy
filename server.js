@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const expressValidator = require("express-validator");
-const config = require("./config.json");
+const config = require("./config.js");
 const passport = require("passport");
+const cors = require("cors");
 
 mongoose.connect(
   config.databaseUrl,
@@ -20,6 +21,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
+app.use(cors());
 
 app.use(passport.initialize());
 

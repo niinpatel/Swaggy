@@ -6,7 +6,7 @@ const gravatar = require("gravatar");
 const jwt = require("jsonwebtoken");
 
 const Customer = require("../models/customer");
-const keys = require("../config.json");
+const keys = require("../config.js");
 
 Router.route("/register")
   .get((req, res, next) => {
@@ -32,7 +32,7 @@ Router.route("/register")
         newCustomer.Customer_Image = avatar;
         newCustomer.save(err => {
           if (err) {
-            throw err;
+            return res.status(400).json(err);
           } else {
             res.json(newCustomer);
           }
