@@ -11,12 +11,16 @@ class Footer extends Component {
                 <div className="copyright__inner">
                   <div className="cpy__right--left">
                     <p>
-                      @All Right Reserved.<a href="/">Swaggy</a>
+                      @All Right Reserved.
+                      <a href="/">Swaggy</a>
                     </p>
                   </div>
                   <div className="cpy__right--right">
                     <a href="/">
-                      <img src="images/icon/shape/2.png" alt="payment images" />
+                      <img
+                        src="/images/icon/shape/2.png"
+                        alt="payment images"
+                      />
                     </a>
                   </div>
                 </div>

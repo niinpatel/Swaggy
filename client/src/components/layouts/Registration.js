@@ -11,7 +11,7 @@ class Registration extends Component {
       Customer_Password2: "",
       Customer_Mobile: "",
       error: "",
-      done: ""
+      done: false
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
