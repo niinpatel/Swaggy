@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const expressValidator = require("express-validator");
-const config = require("./config.json");
+const { port, databaseUrl } = require("./config.js");
 const passport = require("passport");
+const cors = require("cors");
 
 mongoose.connect(
-  config.databaseUrl,
+  databaseUrl,
   err => {
     if (err) {
       throw err;
@@ -20,6 +21,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
+app.use(cors());
 
 app.use(passport.initialize());
 
@@ -29,7 +31,6 @@ const customerroutes = require("./routes/customer");
 
 app.use("/customer", customerroutes);
 
-const port = process.env.port || 1234;
 app.listen(port, err => {
   if (err) {
     throw err;

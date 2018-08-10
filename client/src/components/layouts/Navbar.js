@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Logout from "./Logout";
 
 class Navbar extends Component {
   render() {
@@ -12,8 +13,8 @@ class Navbar extends Component {
             <div className="row">
               <div className="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
                 <div className="logo">
-                  <a href="index.html">
-                    <img src="images/logo/foody.png" alt="logo images" />
+                  <a href="/">
+                    <img src="/images/logo/foody.png" alt="logo images" />
                   </a>
                 </div>
               </div>
@@ -49,9 +50,14 @@ class Navbar extends Component {
               <div className="col-lg-1 col-sm-4 col-md-4 order-2 order-lg-3">
                 <div className="header__right d-flex justify-content-end">
                   <div className="log__in">
-                    <a className="accountbox-trigger" href="/">
-                      <i className="zmdi zmdi-account-o" />Sign Up
-                    </a>
+                    {this.props.customer ? (
+                      <Logout />
+                    ) : (
+                      <a className="accountbox-trigger" href="/">
+                        <i className="zmdi zmdi-account-o" />
+                        Login/Register
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
